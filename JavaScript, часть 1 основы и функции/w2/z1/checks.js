@@ -12,3 +12,4 @@ assert.deepEqual(
 );
 
 console.info('OK!');
+
