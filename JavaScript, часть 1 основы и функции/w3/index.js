@@ -1,70 +1,31 @@
-function prependZero(number) {
-    return number < 10 ? '0' + number : number
-}
+var dateRegexp = /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/;
+var availableDurations = ['years', 'months', 'days', 'hours', 'minutes'];
+
+function addLeadingZero(value) {
+    value = String(value);
+    return value.length < 2 ? '0' + value : value;
+};
 
 function formatDate(date) {
-    var dateObject = {
-        year: prependZero(date.getFullYear()),
-        month: prependZero(date.getMonth() + 1),
-        day: prependZero(date.getDate()),
-        hours: prependZero(date.getHours()),
-        minutes: prependZero(date.getMinutes()),
-    }
+    let res = '';
+    res += date.getFullYear();
+    res += '-';
+    res += addLeadingZero(date.getMonth() + 1);
+    res += '-';
+    res += addLeadingZero(date.getDate());
+    res += '-';
+    res += addLeadingZero(date.getHours());
+    res += ':';
+    res += addLeadingZero(date.getMinutes());
 
-    return dateObject.year + '-' + dateObject.month + '-' + dateObject.day + ' ' + dateObject.hours + ':' + dateObject.minutes
+    return res;
 }
 
-function checkNumber(number) {
-    if (number < 0) {
-        throw TypeError('не может быть отрицательным')
+function checkValueAndDuration(value, duration) {
+    if (value < 0) {
+        throw new TypeError('Значение не иожет быть отрецательным')
+    }
+    if (availableDurations.indexOf(duration) === -1 ) {
+        throw new TypeError('Неизвестная единица времени');
     }
 }
-
-function changeDate(date, number, times) {
-    switch (times) {
-        case 'years':
-            date.setFullYear(date.getFullYear() + number);
-            break;
-        case 'months':
-            date.setMonth(date.getMonth() + number);
-            break;
-        case 'days':
-            date.setDate(date.getDate() + number);
-            break;
-        case 'hours':
-            date.setHours(date.getHours() + number);
-            break;
-        case 'minutes':
-            date.setMinutes(date.getMinutes() + number);
-            break;
-        default:
-            throw TypeError('нет такого периода времени')
-    }
-}
-
-/**
- * @param {String} date
- * @returns {Object}
- */
-module.exports = function (date) {
-    date = new Date(date);
-
-    return {
-        get value() { return formatDate(date) },
-
-        add: function (number, times) {
-            checkNumber(number);
-            changeDate(date, number, times);
-
-            return this;
-        },
-
-        subtract: function (number, times) {
-            checkNumber(number);
-            number *= -1;
-            changeDate(date, number, times);
-
-            return this;
-        }
-    }
-};
