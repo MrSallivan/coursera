@@ -26,7 +26,10 @@
 // alert(tweet.linkify);
 
 //---------------------------TASK---------------------
-var date = new Date('2019-10-10 15:59');
-Object.defineProperty(date, 'add', {
-    
-});
+var today = new Date();
+var year = today.getFullYear();
+alert(today);
+alert(year);
+var theBigDay = new Date();
+theBigDay.setFullYear(1997);
+alert(theBigDay);
