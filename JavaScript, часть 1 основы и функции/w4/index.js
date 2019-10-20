@@ -4,7 +4,6 @@
  * @returns {Array}
  */
 function query(collection) {
-    
 }
 
 /**
