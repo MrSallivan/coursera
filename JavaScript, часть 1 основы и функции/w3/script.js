@@ -1,35 +1,37 @@
-// var tweet = {
-//     likes: 16,
-//     getLikes: function() {
-//         return this.likes;
-//     },
-//     setLikes: function(value) {
-//         this.likes = parseInt(value) || 0;
-//         return this;
-//     },
-//     getAuthor: function(params) {
-//         return this.user.screenName;
-//     },
-//     text: 'Node.js, и модули, Джеймс о проблемах Node.js #nodejs #modules #модули'
-// };
-// alert(tweet.likes);
-// tweet.setLikes(20);
-// console.log(tweet);
-// alert(tweet.likes);
-// Object.defineProperty(tweet, 'linkify' , {
-//     get: function() {
-//         return this.text.replace(
-//              /(#([\wа-я]+))/gi, '<a href="$2">$1</a>'
-//         );
-//     }
-// });
-// alert(tweet.linkify);
+// function format(date) {
+//   return date.toGMTString();
+// }
 
-//---------------------------TASK---------------------
-var today = new Date();
-var year = today.getFullYear();
-alert(today);
-alert(year);
-var theBigDay = new Date();
-theBigDay.setFullYear(1997);
-alert(theBigDay);
+// function getDateString(date) {
+//   date = date || new Date();
+//   return format(date);
+// }
+
+// console.info(getDateString());
+
+// var getDateString = ( function() {
+//   function format(date) {
+//     return date.toGMTString()
+//   }
+//   return function getDateString(date) {
+//     date = date || new Date();
+//     return format(date);
+//   }
+// })();
+// console.info(typeof(getDateString()));
+// function setText(message) {
+//   text = message;
+// }
+// var text = 'Текст';
+// setText('Сообщение');
+// console.info(text);
+function getFruitsCost() {
+  var cost = 7;
+  return function (count) {
+    return cost * count;
+  };
+}
+var getCost = getFruitsCost();
+var price = getCost(10);
+
+console.log(price);
