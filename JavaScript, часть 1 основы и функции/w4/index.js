@@ -4,7 +4,8 @@
  * @returns {Array}
  */
 function query(collection) {
-
+    var date = collection.slice();
+    var 
 }
 
 /**
